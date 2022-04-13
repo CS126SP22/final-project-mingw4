@@ -31,7 +31,6 @@ class CellAutomataApp : public ci::app::App {
   unsigned char brush_color_;
   int runing_step_counter_;
   CellAutomataVisualizer visualizer_;
-  int current_prediction_ = -1;
 };
 
 }  // namespace visualizer

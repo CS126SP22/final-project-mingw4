@@ -1,4 +1,5 @@
-#include <visualizer/cell_automata_app.h>
+#include <cell_automata_visualizer.h>
+#include <cell_automata_app.h>
 
 using cellautomata::visualizer::CellAutomataApp;
 

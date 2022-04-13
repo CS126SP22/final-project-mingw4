@@ -7,6 +7,10 @@ project(naive-bayes)
 # can properly read what's going on.
 set(CMAKE_BUILD_TYPE Debug)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Let's ensure -std=c++xx instead of -std=g++xx
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -51,8 +55,8 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 
-list(APPEND SOURCE_FILES    src/visualizer/cell_automata_app.cc
-                            src/visualizer/sketchpad.cc)
+list(APPEND SOURCE_FILES    src/cell_automata_app.cc
+                            src/cell_automata_visualizer.cc)
 
 # list(APPEND TEST_FILES tests/test_dataset.cc)
 

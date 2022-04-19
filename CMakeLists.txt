@@ -58,7 +58,8 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 list(APPEND SOURCE_FILES    src/cell_automata_app.cc
                             src/cell_automata_visualizer.cc)
 
-# list(APPEND TEST_FILES tests/test_dataset.cc)
+list(APPEND TEST_FILES tests/test_game_of_life_rule.cc)
+list(APPEND TEST_FILES tests/test_forest_fire_simulator_rule.cc)
 
 
 

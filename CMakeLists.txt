@@ -23,7 +23,7 @@ if(MSVC)
     add_compile_options(/W3 /WX)
 else()
     # lots of warnings and all warnings as errors
-    add_compile_options(-Wall -Wpedantic -Werror)
+    add_compile_options(-Wall -Wpedantic)
 endif()
 
 # FetchContent added in CMake 3.11, downloads during the configure step

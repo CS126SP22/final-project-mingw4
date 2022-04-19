@@ -24,13 +24,16 @@ class CellAutomataApp : public ci::app::App {
   // provided that you can see the entire UI on your screen.
   const double WindowHeight = 900;
   const double Margin = 50;
-  const int CellNumRow = 50;
+  const int CellNumRow = 80;
 
  private:
+  app_t app_mode_;
   bool is_runing_;
+  bool is_paused_;
   unsigned char brush_color_;
   int runing_step_counter_;
   CellAutomataVisualizer visualizer_;
+  int current_prediction_ = -1;
 };
 
 }  // namespace visualizer

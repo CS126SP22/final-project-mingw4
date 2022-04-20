@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 11)
-project(naive-bayes)
+project(cellular-automata-fire-simulation)
 
 # This tells the compiler to not aggressively optimize and
 # to include debugging information so that the debugger
@@ -44,7 +44,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE)
+    add_library(catch2 INTERFACE tests/test_game_of_life_rule.cc tests/test_forest_fire_simulator_rule.cc)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 

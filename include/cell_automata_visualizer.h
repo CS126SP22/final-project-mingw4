@@ -6,6 +6,33 @@ namespace cellautomata {
 
 namespace visualizer {
 
+enum app_t {
+  game_of_life=0,
+  forest_fire_simulator=1
+};
+
+enum landforms_t {
+  grassland=0,
+  scrubland=1,
+  forest=2,
+  lake=3,
+  burning=4,
+  burnout=5
+};
+
+// Step rule of game_of_life and forest_fire_simulator
+void step_rule_game_of_life(
+  std::vector<std::vector<unsigned char>> &states,
+  std::vector<std::vector<unsigned char>> &next_states
+);
+
+void step_rule_forest_fire_simulator(
+  std::vector<std::vector<unsigned char>> &states,
+  std::vector<std::vector<unsigned char>> &landforms,
+  std::vector<std::vector<float>> &burning_timer,
+  std::vector<std::vector<unsigned char>> &next_states
+);
+
 /**
  * A visualizer which will displayed 2D cellular automata and response the
  * mouse and key events. 
@@ -47,11 +74,30 @@ class CellAutomataVisualizer {
    */
   void Step();
 
+  /**
+   * Setter of the app mode
+   */
+  void SetAppMode(app_t app_mode);
+
+  /**
+   * Backups landforms from CA_state_ to CA_landforms_
+   * and load landforms from CA_landforms_ to CA_state_
+   */
+  void BackupLandform();
+  void LoadLandform();
+
+
  private:
 
+  // visualization state and state buffer
   std::vector<std::vector<unsigned char>> CA_state_;
   std::vector<std::vector<unsigned char>> CA_state_temp_;
 
+  // hidden states for forest_fire_simulator
+  std::vector<std::vector<unsigned char>> CA_landforms_;
+  std::vector<std::vector<float>> CA_burning_timer_;
+
+  app_t app_mode_;
   glm::vec2 top_left_;
   /** Number of screen cells in the width/height of one visualizer cell */
   int num_cells_row_;

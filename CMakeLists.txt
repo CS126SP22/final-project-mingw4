@@ -44,7 +44,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE tests/test_game_of_life_rule.cc tests/test_forest_fire_simulator_rule.cc)
+    add_library(catch2 INTERFACE tests/test_game_of_life_rule.cc tests/test_forest_fire_simulator_rule.cc tests/test_game_of_life_rule_hex.cc tests/test_game_of_life_rule_hex_large.cc tests/test_forest_file_simulator_rule_hex.cc tests/test_forest_file_simulator_rule_hex.cc)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 

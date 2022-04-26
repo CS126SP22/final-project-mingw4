@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 #include <cell_automata_visualizer.h>
 
-TEST_CASE("Test forest fire simulator rule") {
+TEST_CASE("Test forest fire simulator rule hex") {
 
     std::vector<std::vector<unsigned char>> states;
     std::vector<std::vector<unsigned char>> landforms;
@@ -29,7 +29,7 @@ TEST_CASE("Test forest fire simulator rule") {
 
 
     for (int i = 0; i < 100; i ++) {
-        cellautomata::visualizer::step_rule_forest_fire_simulator(states, landforms, burning_timer, next_states, 1);
+        cellautomata::visualizer::step_rule_forest_fire_simulator(states, landforms, burning_timer, next_states, false);
 
         for (auto i = 0; i < N; i++) {
             for (auto j = 0; j < N; j++) {

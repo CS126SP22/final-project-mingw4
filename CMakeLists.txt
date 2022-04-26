@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 11)
-project(cellular-automata-fire-simulation)
+project(cell-automata)
 
 # This tells the compiler to not aggressively optimize and
 # to include debugging information so that the debugger
@@ -22,7 +22,7 @@ if(MSVC)
     # warning level 3 and all warnings as errors
     add_compile_options(/W3 /WX)
 else()
-    # lots of warnings and all warnings as errors
+    # lots of warnings
     add_compile_options(-Wall -Wpedantic)
 endif()
 
@@ -44,7 +44,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE tests/test_game_of_life_rule.cc tests/test_forest_fire_simulator_rule.cc tests/test_game_of_life_rule_hex.cc tests/test_game_of_life_rule_hex_large.cc tests/test_forest_file_simulator_rule_hex.cc tests/test_forest_file_simulator_rule_hex.cc)
+    add_library(catch2 INTERFACE tests/test_forest_fire_simulator_rule_hex.cc)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -59,7 +59,10 @@ list(APPEND SOURCE_FILES    src/cell_automata_app.cc
                             src/cell_automata_visualizer.cc)
 
 list(APPEND TEST_FILES tests/test_game_of_life_rule.cc)
+list(APPEND TEST_FILES tests/test_game_of_life_rule_hex.cc)
+list(APPEND TEST_FILES tests/test_game_of_life_rule_hex_large.cc)
 list(APPEND TEST_FILES tests/test_forest_fire_simulator_rule.cc)
+list(APPEND TEST_FILES tests/test_forest_fire_simulator_rule_hex.cc)
 
 
 

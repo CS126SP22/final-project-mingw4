@@ -10,7 +10,11 @@ CellAutomataApp::CellAutomataApp() :
   ci::app::setWindowSize((int) WindowHeight + 150, (int) WindowHeight);
   // app_mode_ = game_of_life;
   app_mode_ = forest_fire_simulator;
+  // cell_mode_ = square;
+  cell_mode_ = hexagon;
   visualizer_.SetAppMode(app_mode_);
+  visualizer_.SetCellMode(cell_mode_);
+  visualizer_.Initialize();
   is_runing_ = false;
   is_paused_ = false;
   brush_color_ = 1;

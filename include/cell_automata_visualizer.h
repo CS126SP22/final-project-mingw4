@@ -11,6 +11,11 @@ enum app_t {
   forest_fire_simulator=1
 };
 
+enum cell_t {
+  square=0,
+  hexagon=1
+};
+
 enum landforms_t {
   grassland=0,
   scrubland=1,
@@ -30,7 +35,8 @@ void step_rule_forest_fire_simulator(
   std::vector<std::vector<unsigned char>> &states,
   std::vector<std::vector<unsigned char>> &landforms,
   std::vector<std::vector<float>> &burning_timer,
-  std::vector<std::vector<unsigned char>> &next_states
+  std::vector<std::vector<unsigned char>> &next_states,
+  bool is_square
 );
 
 /**
@@ -78,6 +84,9 @@ class CellAutomataVisualizer {
    * Setter of the app mode
    */
   void SetAppMode(app_t app_mode);
+  void SetCellMode(cell_t cell_mode);
+
+  void Initialize();
 
   /**
    * Backups landforms from CA_state_ to CA_landforms_
@@ -98,6 +107,7 @@ class CellAutomataVisualizer {
   std::vector<std::vector<float>> CA_burning_timer_;
 
   app_t app_mode_;
+  cell_t cell_mode_;
   glm::vec2 top_left_;
   /** Number of screen cells in the width/height of one visualizer cell */
   int num_cells_row_;

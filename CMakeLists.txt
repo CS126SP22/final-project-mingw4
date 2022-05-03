@@ -22,7 +22,7 @@ if(MSVC)
     # warning level 3 and all warnings as errors
     add_compile_options(/W3 /WX)
 else()
-    # lots of warnings
+    # lots of warnings.
     add_compile_options(-Wall -Wpedantic)
 endif()
 
@@ -44,7 +44,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE tests/test_forest_fire_simulator_rule_hex.cc)
+    add_library(catch2 INTERFACE)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -63,7 +63,7 @@ list(APPEND TEST_FILES tests/test_game_of_life_rule_hex.cc)
 list(APPEND TEST_FILES tests/test_game_of_life_rule_hex_large.cc)
 list(APPEND TEST_FILES tests/test_forest_fire_simulator_rule.cc)
 list(APPEND TEST_FILES tests/test_forest_fire_simulator_rule_hex.cc)
-
+list(APPEND TEST_FILES tests/test_forest_fire_simulator_rule_hex_large.cc)
 
 
 ci_make_app(

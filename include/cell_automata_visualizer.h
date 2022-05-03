@@ -11,11 +11,13 @@ enum app_t {
   forest_fire_simulator=1
 };
 
+// cell types
 enum cell_t {
   square=0,
   hexagon=1
 };
 
+// landform types
 enum landforms_t {
   grassland=0,
   scrubland=1,
@@ -41,7 +43,7 @@ void step_rule_forest_fire_simulator(
 
 /**
  * A visualizer which will displayed 2D cellular automata and response the
- * mouse and key events. 
+ * mouse and key events.
  */
 class CellAutomataVisualizer {
  public:
@@ -68,7 +70,7 @@ class CellAutomataVisualizer {
    * @param brush_screen_coords the screen coordinates at which the brush is
    *           located
    */
-  void HandleBrush(const glm::vec2& brush_screen_coords, unsigned char color);
+  void HandleBrush(const glm::vec2& brush_screen_coords, unsigned char color, float brush_radius);
 
   /**
    * Set all cells state to 0.
@@ -94,6 +96,11 @@ class CellAutomataVisualizer {
    */
   void BackupLandform();
   void LoadLandform();
+
+  /**
+   * Getter of the cell width
+   */
+  double GetCellWidth();
 
 
  private:

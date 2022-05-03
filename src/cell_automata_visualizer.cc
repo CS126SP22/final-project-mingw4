@@ -15,6 +15,8 @@ float randf() {
     return (float)rand() / RAND_MAX;
 }
 
+
+// step rule of game of life
 void step_rule_game_of_life(
   std::vector<std::vector<unsigned char>> &states,
   std::vector<std::vector<unsigned char>> &next_states
@@ -56,6 +58,7 @@ void step_rule_game_of_life(
   }
 }
 
+// step rule of forest fire simulator
 void step_rule_forest_fire_simulator(
   std::vector<std::vector<unsigned char>> &states,
   std::vector<std::vector<unsigned char>> &landforms,
@@ -113,7 +116,6 @@ void step_rule_forest_fire_simulator(
         }
       }
 
-
       for (auto n : neighbors) {
 
         auto _i = n.first;
@@ -168,7 +170,6 @@ void step_rule_forest_fire_simulator(
   }
 }
 
-
 CellAutomataVisualizer::CellAutomataVisualizer(
   const vec2& top_left_corner,
   int num_cells_row,
@@ -177,11 +178,17 @@ CellAutomataVisualizer::CellAutomataVisualizer(
     top_left_ = top_left_corner;
     num_cells_row_ = num_cells_row;
     cell_width_ = visualizer_size / num_cells_row;
-
 }
 
 void CellAutomataVisualizer::Initialize() {
 
+    // empty the states
+    CA_state_.clear();
+    CA_state_temp_.clear();
+    CA_landforms_.clear();
+    CA_burning_timer_.clear();
+
+    // fill them with zeros
     if (cell_mode_ == square) {
       for (auto i = 0; i < num_cells_row_; i++) {
         std::vector<unsigned char> row;
@@ -219,7 +226,7 @@ void CellAutomataVisualizer::Initialize() {
     }
 }
 
-
+// draw hexagon function
 void drawHexgon(vec2 &center, float radius) {
 
   std::vector<vec2> vertices;
@@ -292,7 +299,7 @@ void CellAutomataVisualizer::Draw() const {
   }
 }
 
-void CellAutomataVisualizer::HandleBrush(const vec2& brush_screen_coords, unsigned char color) {
+void CellAutomataVisualizer::HandleBrush(const vec2& brush_screen_coords, unsigned char color, float brush_radius) {
 
   vec2 brush_vis_coords =
       (brush_screen_coords - top_left_) / (float)cell_width_;
@@ -301,8 +308,12 @@ void CellAutomataVisualizer::HandleBrush(const vec2& brush_screen_coords, unsign
     for (auto col = 0; col < num_cells_row_; ++col) {
       vec2 cell_center = {col + 0.5, row + 0.5};
 
+      if (cell_mode_ == hexagon) {
+        cell_center = {col + 0.5, ((float)row) / 2.0 * sqrt(3.0f) + 0.5};
+      }
+
       if (glm::distance(brush_vis_coords, cell_center) <=
-          5.0f) {
+          brush_radius) {
         CA_state_[row][col] = (unsigned char) color;
       }
     }
@@ -356,6 +367,10 @@ void CellAutomataVisualizer::LoadLandform() {
       CA_state_[row][col] = CA_landforms_[row][col];
     }
   }
+}
+
+double CellAutomataVisualizer::GetCellWidth() {
+  return cell_width_;
 }
 
 

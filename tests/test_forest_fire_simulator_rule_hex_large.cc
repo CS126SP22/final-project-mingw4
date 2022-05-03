@@ -1,14 +1,14 @@
 #include <catch2/catch.hpp>
 #include <cell_automata_visualizer.h>
 
-TEST_CASE("Test forest fire simulator rule hex") {
+TEST_CASE("Test forest fire simulator rule hex large") {
 
     std::vector<std::vector<unsigned char>> states;
     std::vector<std::vector<unsigned char>> landforms;
     std::vector<std::vector<float>> burning_timer;
     std::vector<std::vector<unsigned char>> next_states;
 
-    int N = 6;
+    int N = 12;
 
     for (auto i = 0; i < N; i++) {
       std::vector<unsigned char> row;
@@ -28,7 +28,7 @@ TEST_CASE("Test forest fire simulator rule hex") {
     }
 
 
-    for (int i = 0; i < 100; i ++) {
+    for (int i = 0; i < 300; i ++) {
       cellautomata::visualizer::step_rule_forest_fire_simulator(states, landforms, burning_timer, next_states, false);
 
       for (auto i = 0; i < N; i++) {
